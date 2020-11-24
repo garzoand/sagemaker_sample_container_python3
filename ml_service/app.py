@@ -77,7 +77,7 @@ def invoke():
         return flask.Response(response='Invalid request data type, only csv is supported.', status=415, mimetype='text/plain')
     
     predictions = Predictor.predict(data)
-    print('Invoked with {} records'.format(predictions.shape[1]))
+    print('Invoked with {} records'.format(predictions.shape[0]))
     out = io.StringIO()
     pd.DataFrame({'results': predictions}).to_csv(out, header=False, index=False)
     return flask.Response(response=out.getvalue(), status=200, mimetype='text/csv')
