@@ -11,6 +11,7 @@ ENV PATH="/opt/program:${PATH}"
 
 RUN mkdir -p /opt/program
 RUN mkdir -p /opt/ml
+RUN mkdir -p /opt/ml/model
 
 COPY ml_service/app.py /opt/program
 COPY ml_service/server.py /opt/program
