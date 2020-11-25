@@ -13,6 +13,8 @@ prefix = '/opt/ml'
 
 # Here, Sagemaker will store the dataset copyied from S3
 input_path = os.path.join(prefix, 'input/data')
+channel_name = 'training'
+training_path = os.path.join(input_path, channel_name)
 # If something bad happens, write a failure file with the error messages and store here
 output_path = os.path.join(prefix, 'output')
 # Everything you store here will be packed into a .tar.gz by Sagemaker and store into S3
@@ -44,7 +46,7 @@ def start_train_job():
     try:
         with open(param_path, 'r') as hp:
             hyperparameters = json.loads(hp.read())
-        _model = model.train_model(input_path, hyperparameters)
+        _model = model.train_model(training_path, hyperparameters)
         model.save_model(model_path, _model)
     except Exception as ex:
         # Write out an error file. This will be returned as the failureReason in the
