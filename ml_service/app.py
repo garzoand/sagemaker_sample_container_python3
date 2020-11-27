@@ -65,7 +65,7 @@ app = flask.Flask(__name__)
 
 @app.route('/ping', methods=['GET'])
 def ping():
-    health = PredictionService.get_model() is not None
+    health = Predictor.get_model() is not None
     status = 200 if health else 404
     return flask.Response(response='\n', status=status, mimetype='application/json')
 
