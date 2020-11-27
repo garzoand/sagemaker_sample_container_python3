@@ -4,6 +4,7 @@ import pickle
 import sys
 import traceback
 import pandas as pd
+import numpy as np
 from sklearn import tree
 
 
@@ -51,5 +52,5 @@ def predict(csv_data, model):
     # predictions = model.predict(data)
     
     # we always predict the same label. This make this model to be not very effective
-    np.array(["setosa"] * len(df), dtype=object)   
+    predictions = np.array(["setosa"] * len(data), dtype=object)   
     return predictions
