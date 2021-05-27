@@ -13,8 +13,6 @@ phases:
       - echo Building the Docker image...          
       - echo Path `pwd` 
       - echo Permissions `ls -la` 
-      - chmod -R 775 decision_trees 
-      - echo Decision Tree Permissions `cd decision_trees && ls -la`     
       - docker build -t $IMAGE_NAME:latest .
       - docker tag $IMAGE_NAME:latest $ECR_URI:latest
   post_build:
