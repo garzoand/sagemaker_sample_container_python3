@@ -11,8 +11,9 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...          
-      - echo Path `pwd` 
-      - echo Permissions `ls -la` 
+      - echo Pulling base image from ECR
+      - docker pull $ECR_BASE_IMAGE
+      - docker tag $ECR_BASE_IMAGE python:3.7-slim
       - docker build -t $IMAGE_NAME:latest .
       - docker tag $IMAGE_NAME:latest $ECR_URI:latest
   post_build:
