@@ -13,7 +13,7 @@ prefix = '/opt/ml'
 
 # Here, Sagemaker will store the dataset copyied from S3
 input_path = os.path.join(prefix, 'input/data')
-channel_name = 'training'
+channel_name = 'train'
 training_path = os.path.join(input_path, channel_name)
 # If something bad happens, write a failure file with the error messages and store here
 output_path = os.path.join(prefix, 'output')
