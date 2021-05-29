@@ -55,7 +55,7 @@ def main():  # pragma: no cover
     )
     args = parser.parse_args()
 
-    if args.role_arn is None or args.image_uri is None or args.model_path is None`:
+    if args.role_arn is None or args.image_uri is None or args.model_path is None:
         parser.print_help()
         sys.exit(2)
 
