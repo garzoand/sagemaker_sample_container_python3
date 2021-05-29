@@ -29,9 +29,11 @@ def get_session(region, default_bucket):
 def get_pipeline(region, role=None, default_bucket=None):
 
     session = get_session(region, default_bucket)
+    print(role)
     if role is None:
         role = sagemaker.session.get_execution_role(session)
-    
+    print(role)
+
     train_data_param = ParameterString(name='train-data')
     validation_data_param = ParameterString(name='validation-data')
     image_uri_param = ParameterString(name='image-uri')
