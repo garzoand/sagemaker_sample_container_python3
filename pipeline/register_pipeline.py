@@ -46,7 +46,7 @@ def main():  # pragma: no cover
         sys.exit(2)
 
     try:
-        pipeline = get_pipeline_driver('pipeline', DEFAULT_REGION)
+        pipeline = get_pipeline_driver('pipeline', DEFAULT_REGION, args.role_arn)
         print("###### Creating/updating a SageMaker Pipeline with the following definition:")
         parsed = json.loads(pipeline.definition())
         print(json.dumps(parsed, indent=2, sort_keys=True))
