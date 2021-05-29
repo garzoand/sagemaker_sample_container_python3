@@ -39,14 +39,28 @@ def main():  # pragma: no cover
         type=str,
         help="The role arn for the pipeline service execution role.",
     )
+    parser.add_argument(
+        "-image-uri",
+        "--image-uri",
+        dest="image_uri",
+        type=str,
+        help="ECR URI for the model image",
+    )
+    parser.add_argument(
+        "-model-path",
+        "--model-path",
+        dest="model_path",
+        type=str,
+        help="Path for storing model output and artifacts",
+    )
     args = parser.parse_args()
 
-    if args.role_arn is None:
+    if args.role_arn is None or args.image_uri is None or args.model_path is None`:
         parser.print_help()
         sys.exit(2)
 
     try:
-        pipeline = get_pipeline_driver('pipeline', DEFAULT_REGION, args.role_arn)
+        pipeline = get_pipeline_driver('pipeline', DEFAULT_REGION, args.role_arn, args.image_uri, args.model_path)
         print("###### Creating/updating a SageMaker Pipeline with the following definition:")
         parsed = json.loads(pipeline.definition())
         print(json.dumps(parsed, indent=2, sort_keys=True))

@@ -16,7 +16,7 @@ from __future__ import absolute_import
 import ast
 
 
-def get_pipeline_driver(module_name, region, role):
+def get_pipeline_driver(module_name, region, role, image_uri, model_path):
     """Gets the driver for generating your pipeline definition.
 
     Pipeline modules must define a get_pipeline() module-level method.
@@ -29,4 +29,4 @@ def get_pipeline_driver(module_name, region, role):
         The SageMaker Workflow pipeline.
     """
     _imports = __import__(module_name, fromlist=["get_pipeline"])
-    return _imports.get_pipeline(region, role)
+    return _imports.get_pipeline(region, role, image_uri, model_path)

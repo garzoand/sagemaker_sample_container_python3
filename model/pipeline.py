@@ -26,13 +26,11 @@ def get_session(region, default_bucket):
     )
 
 # Must be implemented by the Data Scientist
-def get_pipeline(region, role=None, default_bucket=None):
+def get_pipeline(region, role, image_uri, model_path):
 
     session = get_session(region, default_bucket)
-    print(role)
     if role is None:
         role = sagemaker.session.get_execution_role(session)
-    print(role)
 
     train_data_param = ParameterString(name='train-data')
     validation_data_param = ParameterString(name='validation-data')
@@ -40,12 +38,12 @@ def get_pipeline(region, role=None, default_bucket=None):
     model_path_param = ParameterString(name='model-path')
 
     estimator = Estimator(
-        image_uri=image_uri_param,
+        image_uri=image_uri,
         instance_type='ml.m5.xlarge',
         instance_count=1,
-        output_path=model_path_param,
+        output_path=model_path,
         sagemaker_session=session,
-        role=sagemaker.session.get_execution_role()
+        role=role
     )
 
     ### Your Pipeline definition goes here ....
