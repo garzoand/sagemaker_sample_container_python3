@@ -16,6 +16,8 @@ phases:
       - docker tag $ECR_BASE_IMAGE python:3.7-slim
       - docker build -t $IMAGE_NAME:latest .
       - docker tag $IMAGE_NAME:latest $ECR_URI:latest
+      - cd pipeline
+      - python register_pipeline.py --role-arn $ROLE --image-uri $ECR_URI --model-path $MODEL_PATH
   post_build:
     commands:
       - echo Build completed on `date`
