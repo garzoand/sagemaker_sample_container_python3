@@ -14,21 +14,20 @@ from sagemaker.workflow.steps import ProcessingStep, TrainingStep
 import sagemaker
 import boto3
 
-def get_session(region, default_bucket):
+def get_session(region):
     session = boto3.Session(region_name=region)
     sm_client = session.client('sagemaker')
     smr_client = session.client('sagemaker-runtime')
     return sagemaker.session.Session(
         boto_session=session,
         sagemaker_client=sm_client,
-        sagemaker_runtime_client=smr_client,
-        default_bucket=default_bucket
+        sagemaker_runtime_client=smr_client
     )
 
 # Must be implemented by the Data Scientist
 def get_pipeline(region, role, image_uri, model_path):
 
-    session = get_session(region, default_bucket)
+    session = get_session(region)
     if role is None:
         role = sagemaker.session.get_execution_role(session)
 
