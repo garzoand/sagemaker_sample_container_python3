@@ -17,7 +17,7 @@ import argparse
 import json
 import sys
 
-from utils import get_pipeline_driver, convert_struct
+from utils import get_pipeline_driver
 
 sys.path.append('../model/')
 
